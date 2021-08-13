@@ -2,20 +2,23 @@ def check():
     pila = []
     entrada = input("Ingresa secuencia de parentesis: >>>")
     for i in entrada:
+
         if (i == '(' or i == '['):
             pila.append(i)
         else:
+
           if (len(pila)==0):
             return "Incorrecto"
           else:
+
             aux=pila.pop()
             if(aux=='('):
                 if(i != ')'):
                    return "Incorrecto"
   
             elif (aux == '['):
+
                   if (i != ']'):
                        return "Incorrecto"
     return "CORRECTO!!!"
-
 print (check())
