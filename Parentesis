@@ -1,3 +1,6 @@
+#Benjamín Guillermo López Salinas
+#A01383127
+
 def check():
     pila = []
     entrada = input("Ingresa secuencia de parentesis: >>>")
