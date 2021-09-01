@@ -1,0 +1,72 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+//Definir arreglo
+const int N = 100;
+
+int a[N];//tamaño máximo del arreglo
+int n;//array size
+
+//K será el elemento a buscar en el arreglo
+int k;
+
+bool comp(int dig)
+{
+	//comparativa para ver si lo que buscamos se encuentra en el elemento que nos encontramos del arreglo...
+	int ele=a[dig];
+
+	//Si el elemento que buscamos es menor que el elemento que se esta comparando, de acuerdo al proceso de Busqueda Binaria, acomodamos nuestros valores altos y bajos de límite de índices dentro del arreglo para tener un nuevo punto de comparacion en medio del nuevo arreglo.
+	if(k<=ele)
+	{
+		return 1;
+	}
+	else
+	{
+	return 0;
+	}
+}
+void bB(int lo,int hi)//son los puntos que se dividiran para calcular un nuevo punto de comparación...
+{
+	while(lo<hi)
+	{
+		int mid=(lo+hi)/2;//escogemos el centro como nuevo punto de comparación
+		if(comp(mid))
+		{
+			hi=mid;//Ahora nuestro punto alto, será el medio ya que tenemos que buscar el numero debajo del que ya encontramos
+		}
+		else
+		{
+			lo=mid+1;
+		}
+	}
+	//Si encontramos el elemento que buscamos...
+	if(a[lo]==k)
+		cout<<"El numero se encuentra en el INDICE << "<<lo<<" >> del arreglo que me diste!!!";
+	else
+		cout<<"El elemento que buscas no existe en el arreglo";//Si no lo encontramos
+
+}
+
+
+int main()
+{
+  cout<<endl;
+  cout<<"RECUERDA! Debes darme los elementos del arreglo ORDENADOS";
+  cout<<endl;
+  cout<<endl;
+  cout<<"Dame el tamaño del arreglo...";
+	cin>>n;
+for(int i=0; i<n; i++)
+{
+  cout<<"Dame el valor del arreglo en "<<i<<": ";
+	cin>>a[i];
+}
+
+cout<<"Dime que elemento estamos buscando.... ";
+cin>>k;
+
+
+bB(0,n);
+
+	return 0;
+}
