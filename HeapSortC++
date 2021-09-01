@@ -1,0 +1,76 @@
+#include <iostream>
+using namespace std;
+
+void heapify(int arr[], int n, int i)
+{
+	int largest = i; // Inicializamos <<largest>> como la raiz del arbol
+	int l=2*i+1; // hijo de la izquierda = 2*i + 1
+	int r=2*i+2; // hijo de la derecha = 2*i + 2
+
+	// Si el hijo de la izquierda es mayor que la raiz del árbol
+	if (l<n && arr[l]>arr[largest])
+		largest=l;
+
+	// Si el hijo de la derecha es mayor...
+	if (r<n && arr[r]>arr[largest])
+		largest =r;
+
+	// Si el numero más grande no es la raiz del AB
+	if (largest != i) {
+		swap(arr[i], arr[largest]);
+
+		// Utilizamos recursividad para continuar el proceso hasta que se complete el AB
+		heapify(arr, n, largest);
+	}
+}
+
+//////////////////////////////////////////////////////
+//Funcion auxiliar para hacer HeapSort
+void heapSort(int arr[], int n)
+{
+	// Volvemos a acomodar el arreglo usando la funcion creada
+	for (int i=n/2-1; i>=0; i--)
+		heapify(arr, n, i);
+
+	// Vamos sacando uno por uno los elementos del arreglo
+	for (int i=n-1; i>0; i--) {
+		// vamos cambiando el elemento a la raiz y volvemos a llamar la funcion
+		swap(arr[0], arr[i]);
+		heapify(arr, i, 0);
+	}
+}
+
+/////////////////////////////////////////////////////
+//Funcion auxiliar para imprimir el arreglo
+void printArray(int arr[], int n)
+{
+	for (int i=0; i<n; ++i)
+		cout <<arr[i]<< " ";
+	cout<<"\n";
+}
+
+////////////////////////////////////////////////
+int main()
+{
+  int n;//Tamaño del arreglo
+  cout<<"Dime cuantos ELEMENTOS quieres utilizar... ";
+  cin>>n;
+	int arr[n];
+  cout<<"Dame los elementos DESORDENADOS";
+  cout<<endl;
+  cout<<endl;
+
+  
+  //Llenando el arreglo...
+  for (int i=0; i<n; i++) {
+  cout<<"Dame el valor del ELEMENTO "<<i<<": ";
+	cin>>arr[i];
+  }
+
+  //Acomodamos el arreglo
+	heapSort(arr, n);
+
+  cout <<endl;
+	cout << "Los ELEMENTOS Ordenados son ... \n";
+	printArray(arr, n);//Imprimimos el arreglo ya ordenado
+}
