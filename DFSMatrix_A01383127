@@ -1,0 +1,61 @@
+#Benjamín Guillermo López Salinas A01383127
+from pyvis.network import Network
+#Grafo
+class Graph:
+    adj = []
+    def __init__(self, v, e):
+
+        self.v = v
+        self.e = e
+        Graph.adj = [[0 for i in range(v)]
+                     for j in range(v)]
+#definiendo funcion para aristas
+    def addEdge(self, start, e):
+
+        Graph.adj[start][e] = 1
+        Graph.adj[e][start] = 1
+#Definiendo funcion DFS
+    def DFS(self, start, visited):
+        print(start, end='\n')
+        visited[start] = True
+
+        for i in range(self.v):
+            if (Graph.adj[start][i] == 1 and
+                    (not visited[i])):
+                self.DFS(i, visited)
+#INICIALIZANDO
+v, e = 5, 4
+
+G = Graph(v, e)
+G.addEdge(0, 1)
+G.addEdge(1, 2)
+G.addEdge(2, 3)
+G.addEdge(3, 4)
+G.addEdge(4, 0)
+G.addEdge(0, 3)
+G.addEdge(2, 4)
+
+visited = [False] * v
+G.DFS(0, visited);
+
+#PARA EL PYVIS
+net = Network()
+
+net.add_node(0, label="B")#NODO B
+net.add_node(1, label="E")#NODO E
+net.add_node(2, label="N")#NODO N
+net.add_node(3, label="J")#NODO J
+net.add_node(4, label="A")#NODO A
+
+#ARISTAS EN SIMULACION
+net.add_edge(0, 1, weight=.2) #ARISTA B-E
+net.add_edge(1, 2, weight=.2) #ARISTA E-N
+net.add_edge(2, 3, weight=.2) #ARISTA N-J
+net.add_edge(3, 4, weight=.2) #ARISTA J-A
+net.add_edge(4, 0, weight=.2) #ARISTA A-B
+net.add_edge(0, 3, weight=.2) #ARISTA B-J
+net.add_edge(2, 4, weight=.2) #ARISTA N-A
+
+#MOSTRAR HTML CON FISICAS
+net.toggle_physics(True)
+net.show('mygraph.html')
