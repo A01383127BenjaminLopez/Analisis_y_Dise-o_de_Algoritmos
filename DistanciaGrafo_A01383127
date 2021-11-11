@@ -70,18 +70,7 @@ void Graph::BFS(int s)
 int main()
 {
 	//Creamos el grafo
-	Graph g(28);//Numero de nodos
-	/*g.addEdge(1, 2);
-	g.addEdge(2, 3);
-	g.addEdge(3, 4);
-	g.addEdge(1, 8);
-	g.addEdge(2, 5);
-	g.addEdge(3, 5);
-	g.addEdge(4, 6);
-	g.addEdge(5, 6);
-	g.addEdge(5, 9);
-	g.addEdge(6, 13);
-	g.addEdge(6, 7);*/
+	Graph g(29);//Numero de nodos=28 (29 ---> 0 al 28)
 
   g.addEdge(1, 2);
   g.addEdge(1, 8);
@@ -205,10 +194,10 @@ int main()
   g.addEdge(27, 28);
 
   g.addEdge(28, 24);
-  g.addEdge(28, 227);
+  g.addEdge(28, 27);
 
 	cout << "Se muestran Resultados de Breadth First Traversal "<<endl;
-  cout << "Comenzando por el Nodo Raiz <<El Rosario>> "<<endl;
+  cout << "Comenzando por el Nodo <<El Rosario>> "<<endl;
 	g.BFS(1);
   cout<<endl<<endl;
   cout<<"EQUIVALENCIAS:"<<endl;
@@ -242,3 +231,4 @@ int main()
   cout<<"28. Atlalilco"<<endl;
 	return 0;
 }
+
